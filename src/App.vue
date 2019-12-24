@@ -13,6 +13,9 @@
       </v-container>
     </v-content>
 
+    <!-- Errors -->
+    <Errors></Errors>
+
     <v-btn bottom color="pink" dark fab fixed right @click="dialog = !dialog">
       <v-icon>mdi-plus</v-icon>
     </v-btn>
@@ -67,27 +70,29 @@
 </template>
 
 <script>
-  // import HelloWorld from './components/HelloWorld';
-  import Asside from "@/components/Asside.vue";
-  import Header from "@/components/Header.vue";
+// import HelloWorld from './components/HelloWorld';
+import Asside from "@/components/Asside.vue";
+import Header from "@/components/Header.vue";
+import Errors from "@/components/Errores/Snackbar.vue";
 
-  export default {
-    name: "App",
+export default {
+  name: "App",
 
-    components: {
-      Asside,
-      Header
-    },
+  components: {
+    Asside,
+    Header,
+    Errors
+  },
 
-    data: () => ({
-      dialog: false,
-      drawer: null
-    })
-  };
+  data: () => ({
+    dialog: false,
+    drawer: null
+  })
+};
 </script>
 
 <style>
-  .v-content__wrap {
-    background-color: #fefefe !important;
-  }
+.v-content__wrap {
+  background-color: #fefefe !important;
+}
 </style>

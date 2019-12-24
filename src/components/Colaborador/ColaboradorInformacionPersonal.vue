@@ -62,13 +62,7 @@
 
 		<v-row>
 			<v-col cols="12" class="d-flex justify-end">
-				<v-btn
-					:loading="disabled"
-					color="primary"
-					outlined
-					@click="submit()"
-					>Salvar</v-btn
-				>
+				<v-btn color="primary" outlined @click="submit()">Salvar</v-btn>
 			</v-col>
 		</v-row>
 	</v-form>
@@ -77,6 +71,9 @@
 <script>
 // VUEX
 import { mapActions } from "vuex";
+
+import { mapWaitingActions } from "vue-wait";
+
 export default {
 	name: "ColaboradorInformacionPersonal",
 
@@ -89,12 +86,12 @@ export default {
 				url: "http://127.0.0.1:8001/api/v1/colaborador"
 			},
 			colaborador: {
-				nombre: null,
-				apellido_materno: null,
-				apellido_paterno: null,
-				fecha_nacimiento: null,
-				curp: null,
-				sexo: null
+				nombre: "Test",
+				apellido_materno: "Test",
+				apellido_paterno: "Test",
+				fecha_nacimiento: "1996-10-01",
+				curp: "Test",
+				sexo: "Test"
 			},
 			reglas: {
 				nombre: [
@@ -105,14 +102,13 @@ export default {
 		};
 	},
 	methods: {
-		...mapActions(["colaboradorAdd"]),
-		...mapActions(["colaboradorCreating"]),
-
+		...mapActions(["colaboradorStore"]),
+		// ...mapWaitingActions("colaborador", {
+		// 	colaboradorStore: "colaborador store"
+		// }),
 		submit: function() {
 			if (this.$refs.form.validate()) {
-				this.colaboradorCreating(true);
-
-				this.colaboradorAdd([this.colaborador]);
+				this.colaboradorStore([this.colaborador]);
 			}
 		},
 		validate() {
